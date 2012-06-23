@@ -1,0 +1,721 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>scalikejdbc</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../lib/template.css" />
+      <script type="text/javascript" src="../lib/jquery.js"></script>
+      <script type="text/javascript" src="../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../lib/template.js"></script>
+      <script type="text/javascript" src="../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="value">
+      <div id="definition">
+        <img src="../lib/package_big.png" />
+        
+        <h1>scalikejdbc</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">scalikejdbc</span>
+      </span>
+      </h4>
+      
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>ScalikeJDBC - A thin JDBC wrapper in Scala</p><p>Just write SQL:</p><p>This is a thin JDBC wrapper library which just uses java.sql.PreparedStatement internally.
+Users only need to write SQL and map from java.sql.ResultSet objects to Scala objects.
+It's pretty simple, really.</p><p>Basic Usage:</p><p>Using <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>:</p><pre>
+<span class="kw">import</span> scalikejdbc._
+<span class="kw">import</span> org.joda.time.DateTime
+<span class="kw">case</span> <span class="kw">class</span> User(id: <span class="std">Long</span>, name: <span class="std">String</span>, birthday: <span class="std">Option</span>[DateTime])
+
+<span class="kw">val</span> activeUsers: <span class="std">List</span>[User] = DB readOnly { session <span class="kw">=&gt;</span>
+  session.list(<span class="lit">"select * from user where active = ?"</span>, <span class="kw">true</span>) { rs <span class="kw">=&gt;</span>
+    User(
+      id = rs.long(<span class="lit">"id"</span>),
+      name = rs.string(<span class="lit">"name"</span>),
+      birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime)
+    )
+  }
+}
+</pre><p>Using <a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a>:</p><pre>
+<span class="kw">import</span> scalikejdbc._
+<span class="kw">import</span> org.joda.time.DateTime
+<span class="kw">case</span> <span class="kw">class</span> User(id: <span class="std">Long</span>, name: <span class="std">String</span>, birthday: <span class="std">Option</span>[DateTime])
+
+<span class="kw">val</span> activeUsers: <span class="std">List</span>[User] = DB readOnly { <span class="kw">implicit</span> session <span class="kw">=&gt;</span>
+  SQL(<span class="lit">"select * from user where active = ?"</span>).bind(<span class="kw">true</span>)
+    .map { rs <span class="kw">=&gt;</span> User(
+      id = rs.long(<span class="lit">"id"</span>),
+      name = rs.string(<span class="lit">"name"</span>),
+      birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime))
+    }.list.apply()
+}
+</pre><p>or</p><pre>
+<span class="kw">val</span> activeUsers: <span class="std">List</span>[User] = DB readOnly { <span class="kw">implicit</span> session <span class="kw">=&gt;</span>
+  SQL(<span class="lit">"select * from user where active = /*'active*/rue"</span>)
+    .bindByName('active -&gt; <span class="kw">true</span>)
+    .map { rs <span class="kw">=&gt;</span> User(
+      id = rs.long(<span class="lit">"id"</span>),
+      name = rs.string(<span class="lit">"name"</span>),
+      birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime))
+    }.list.apply()
+}
+</pre></div></div>
+    
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="scalikejdbc.ActiveSession" data-isabs="false">
+      <a id="ActiveSession:ActiveSession"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ActiveSession.html"><span class="name">ActiveSession</span></a><span class="params">(<span name="conn">conn: Connection</span>, <span name="tx">tx: Option[Tx]</span>, <span name="isReadOnly">isReadOnly: Boolean</span>)</span><span class="result"> extends DBSession with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Active session implementation of <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>.</p>
+    </li><li visbl="pub" name="scalikejdbc.package#Closable" data-isabs="false">
+      <a id="Closable:Closable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Closable</span><span class="result"> = AnyRef { def close(): Unit }</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.CommonsConnectionPool" data-isabs="false">
+      <a id="CommonsConnectionPool:CommonsConnectionPool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CommonsConnectionPool.html"><span class="name">CommonsConnectionPool</span></a><span class="result"> extends ConnectionPool</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Commons DBCP Connection Pool
+</p>
+    </li><li visbl="pub" name="scalikejdbc.ConnectionPool" data-isabs="true">
+      <a id="ConnectionPool:ConnectionPool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ConnectionPool.html"><span class="name">ConnectionPool</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Connection Pool
+</p>
+    </li><li visbl="pub" name="scalikejdbc.ConnectionPoolFactory" data-isabs="true">
+      <a id="ConnectionPoolFactory:ConnectionPoolFactory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ConnectionPoolFactory.html"><span class="name">ConnectionPoolFactory</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Connection Pool Factory
+</p>
+    </li><li visbl="pub" name="scalikejdbc.ConnectionPoolSettings" data-isabs="false">
+      <a id="ConnectionPoolSettings:ConnectionPoolSettings"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ConnectionPoolSettings.html"><span class="name">ConnectionPoolSettings</span></a><span class="params">(<span name="initialSize">initialSize: Int</span>, <span name="maxSize">maxSize: Int</span>, <span name="validationQuery">validationQuery: String</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Settings for ConnectionPool
+</p>
+    </li><li visbl="pub" name="scalikejdbc.DB" data-isabs="false">
+      <a id="DB:DB"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DB.html"><span class="name">DB</span></a><span class="params">(<span name="conn">conn: Connection</span>)</span><span class="result"> extends LogSupport with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Basic Database Accessor</p>
+    </li><li visbl="pub" name="scalikejdbc.DBSession" data-isabs="true">
+      <a id="DBSession:DBSession"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DBSession.html"><span class="name">DBSession</span></a><span class="result"> extends LogSupport</span>
+      </span>
+      </h4>
+      <p class="comment cmt">DB Session</p>
+    </li><li visbl="pub" name="scalikejdbc.HasExtractor" data-isabs="true">
+      <a id="HasExtractor:HasExtractor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="HasExtractor.html"><span class="name">HasExtractor</span></a><span class="result"> extends WithExtractor</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents that this SQL already has an extractor
+</p>
+    </li><li visbl="pub" name="scalikejdbc.package.LocalTimeConverter" data-isabs="false">
+      <a id="LocalTimeConverter:LocalTimeConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$LocalTimeConverter.html"><span class="name">LocalTimeConverter</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">org.joda.time.LocalTime converter.</p>
+    </li><li visbl="pub" name="scalikejdbc.LoggingSQLAndTimeSettings" data-isabs="false">
+      <a id="LoggingSQLAndTimeSettings:LoggingSQLAndTimeSettings"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="LoggingSQLAndTimeSettings.html"><span class="name">LoggingSQLAndTimeSettings</span></a><span class="params">(<span name="enabled">enabled: Boolean</span>, <span name="logLevel">logLevel: Symbol</span>, <span name="warningEnabled">warningEnabled: Boolean</span>, <span name="warningThresholdMillis">warningThresholdMillis: Long</span>, <span name="warningLogLevel">warningLogLevel: Symbol</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Settings for logging SQL and timing
+</p>
+    </li><li visbl="pub" name="scalikejdbc.NamedAutoSession" data-isabs="false">
+      <a id="NamedAutoSession:NamedAutoSession"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="NamedAutoSession.html"><span class="name">NamedAutoSession</span></a><span class="params">(<span name="name">name: Any</span>)</span><span class="result"> extends DBSession with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents that already existing session will be used or a new session which is retrieved from named connection pool will be started.</p>
+    </li><li visbl="pub" name="scalikejdbc.NamedDB" data-isabs="false">
+      <a id="NamedDB:NamedDB"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="NamedDB.html"><span class="name">NamedDB</span></a><span class="params">(<span name="name">name: Any</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Named Basic DB Accessor</p>
+    </li><li visbl="pub" name="scalikejdbc.NoExtractor" data-isabs="true">
+      <a id="NoExtractor:NoExtractor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="NoExtractor.html"><span class="name">NoExtractor</span></a><span class="result"> extends WithExtractor</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents that this SQL doesn't have an extractor yet
+</p>
+    </li><li visbl="pub" name="scalikejdbc.ResultSetCursor" data-isabs="false">
+      <a id="ResultSetCursor:ResultSetCursor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ResultSetCursor.html"><span class="name">ResultSetCursor</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">java.sql.ResultSet cursor
+</p>
+    </li><li visbl="pub" name="scalikejdbc.ResultSetTraversable" data-isabs="false">
+      <a id="ResultSetTraversable:ResultSetTraversable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ResultSetTraversable.html"><span class="name">ResultSetTraversable</span></a><span class="result"> extends Traversable[WrappedResultSet]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">scala.collection.Traversable object which wraps java.sql.ResultSet
+</p>
+    </li><li visbl="pub" name="scalikejdbc.SQL" data-isabs="true">
+      <a id="SQL:SQL[A, E]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SQL.html"><span class="name">SQL</span></a><span class="tparams">[<span name="A">A</span>, <span name="E">E &lt;: WithExtractor</span>]</span><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL abstraction.</p>
+    </li><li visbl="pub" name="scalikejdbc.SQLExecution" data-isabs="false">
+      <a id="SQLExecution:SQLExecution"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SQLExecution.html"><span class="name">SQLExecution</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL which execute java.sql.Statement#execute().</p>
+    </li><li visbl="pub" name="scalikejdbc.SQLToList" data-isabs="false">
+      <a id="SQLToList:SQLToList[A, E]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SQLToList.html"><span class="name">SQLToList</span></a><span class="tparams">[<span name="A">A</span>, <span name="E">E &lt;: WithExtractor</span>]</span><span class="result"> extends SQL[A, E]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL which exeute java.sql.Statement#executeQuery()
+and returns the result as scala.collection.immutable.List value.</p>
+    </li><li visbl="pub" name="scalikejdbc.SQLToOption" data-isabs="false">
+      <a id="SQLToOption:SQLToOption[A, E]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SQLToOption.html"><span class="name">SQLToOption</span></a><span class="tparams">[<span name="A">A</span>, <span name="E">E &lt;: WithExtractor</span>]</span><span class="result"> extends SQL[A, E]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL which exeute java.sql.Statement#executeQuery()
+and returns the result as scala.Option value.</p>
+    </li><li visbl="pub" name="scalikejdbc.SQLToTraversable" data-isabs="false">
+      <a id="SQLToTraversable:SQLToTraversable[A, E]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SQLToTraversable.html"><span class="name">SQLToTraversable</span></a><span class="tparams">[<span name="A">A</span>, <span name="E">E &lt;: WithExtractor</span>]</span><span class="result"> extends SQL[A, E]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL which exeute java.sql.Statement#executeQuery()
+and returns the result as scala.collection.Traversable value.</p>
+    </li><li visbl="pub" name="scalikejdbc.SQLUpdate" data-isabs="false">
+      <a id="SQLUpdate:SQLUpdate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SQLUpdate.html"><span class="name">SQLUpdate</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL which execute java.sql.Statement#exeuteUpdate().</p>
+    </li><li visbl="pub" name="scalikejdbc.SQLUpdateWithGeneratedKey" data-isabs="false">
+      <a id="SQLUpdateWithGeneratedKey:SQLUpdateWithGeneratedKey"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SQLUpdateWithGeneratedKey.html"><span class="name">SQLUpdateWithGeneratedKey</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL which execute java.sql.Statement#exeuteUpdate() and get generated key value.</p>
+    </li><li visbl="pub" name="scalikejdbc.package.ScalaBigDecimalConverter" data-isabs="false">
+      <a id="ScalaBigDecimalConverter:ScalaBigDecimalConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$ScalaBigDecimalConverter.html"><span class="name">ScalaBigDecimalConverter</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">BigDecimal converter.</p>
+    </li><li visbl="pub" name="scalikejdbc.StatementExecutor" data-isabs="false">
+      <a id="StatementExecutor:StatementExecutor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="StatementExecutor.html"><span class="name">StatementExecutor</span></a><span class="params">(<span name="underlying">underlying: PreparedStatement</span>, <span name="template">template: String</span>, <span name="params">params: Seq[Any]</span>)</span><span class="result"> extends LogSupport with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">java.sql.Statement Executor</p>
+    </li><li visbl="pub" name="scalikejdbc.TooManyRowsException" data-isabs="false">
+      <a id="TooManyRowsException:TooManyRowsException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TooManyRowsException.html"><span class="name">TooManyRowsException</span></a><span class="params">(<span name="expected">expected: Int</span>, <span name="actual">actual: Int</span>)</span><span class="result"> extends Exception with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception which represents too many rows returned.</p>
+    </li><li visbl="pub" name="scalikejdbc.Tx" data-isabs="false">
+      <a id="Tx:Tx"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Tx.html"><span class="name">Tx</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">DB Transaction abstraction.</p>
+    </li><li visbl="pub" name="scalikejdbc.package.UnixTimeInMillisConverter" data-isabs="false">
+      <a id="UnixTimeInMillisConverter:UnixTimeInMillisConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$UnixTimeInMillisConverter.html"><span class="name">UnixTimeInMillisConverter</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Unix Time Converter to several types.</p>
+    </li><li visbl="pub" name="scalikejdbc.WithExtractor" data-isabs="true">
+      <a id="WithExtractor:WithExtractor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WithExtractor.html"><span class="name">WithExtractor</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents an extractor is already specified or not
+</p>
+    </li><li visbl="pub" name="scalikejdbc.WrappedResultSet" data-isabs="false">
+      <a id="WrappedResultSet:WrappedResultSet"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WrappedResultSet.html"><span class="name">WrappedResultSet</span></a><span class="params">(<span name="underlying">underlying: ResultSet</span>, <span name="cursor">cursor: ResultSetCursor</span>, <span name="index">index: Int</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt"><code> java.sql.ResultSet</code> wrapper
+</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="scalikejdbc.AutoSession" data-isabs="false">
+      <a id="AutoSession:AutoSession"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AutoSession$.html"><span class="name">AutoSession</span></a><span class="result"> extends DBSession with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents that already existing session will be used or a new session will be started.</p>
+    </li><li visbl="pub" name="scalikejdbc.CommonsConnectionPoolFactory" data-isabs="false">
+      <a id="CommonsConnectionPoolFactory:CommonsConnectionPoolFactory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CommonsConnectionPoolFactory$.html"><span class="name">CommonsConnectionPoolFactory</span></a><span class="result"> extends ConnectionPoolFactory</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Connection Pool Factory
+</p>
+    </li><li visbl="pub" name="scalikejdbc.ConnectionPool" data-isabs="false">
+      <a id="ConnectionPool:ConnectionPool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ConnectionPool$.html"><span class="name">ConnectionPool</span></a><span class="result"> extends LogSupport</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Connection Pool</p>
+    </li><li visbl="pub" name="scalikejdbc.DB" data-isabs="false">
+      <a id="DB:DB"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DB$.html"><span class="name">DB</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Basic Database Accessor</p>
+    </li><li visbl="pub" name="scalikejdbc.DBSession" data-isabs="false">
+      <a id="DBSession:DBSession"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DBSession$.html"><span class="name">DBSession</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="scalikejdbc.ExecutableSQLParser" data-isabs="false">
+      <a id="ExecutableSQLParser:ExecutableSQLParser"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExecutableSQLParser$.html"><span class="name">ExecutableSQLParser</span></a><span class="result"> extends JavaTokenParsers with LogSupport</span>
+      </span>
+      </h4>
+      <p class="comment cmt">ExecutableSQL Parser.</p>
+    </li><li visbl="pub" name="scalikejdbc.GlobalSettings" data-isabs="false">
+      <a id="GlobalSettings:GlobalSettings"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="GlobalSettings$.html"><span class="name">GlobalSettings</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">GlobalSettings for this library
+</p>
+    </li><li visbl="pub" name="scalikejdbc.LoanPattern" data-isabs="false">
+      <a id="LoanPattern:LoanPattern"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LoanPattern$.html"><span class="name">LoanPattern</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Loan pattern implementation
+</p>
+    </li><li visbl="pub" name="scalikejdbc.NoSession" data-isabs="false">
+      <a id="NoSession:NoSession"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NoSession$.html"><span class="name">NoSession</span></a><span class="result"> extends DBSession with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents that there is no active session.</p>
+    </li><li visbl="pub" name="scalikejdbc.SQL" data-isabs="false">
+      <a id="SQL:SQL"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SQL$.html"><span class="name">SQL</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL abstraction's companion object.</p>
+    </li><li visbl="pub" name="scalikejdbc.ThreadLocalDB" data-isabs="false">
+      <a id="ThreadLocalDB:ThreadLocalDB"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ThreadLocalDB$.html"><span class="name">ThreadLocalDB</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Thread-local DB.</p>
+    </li><li visbl="pub" name="scalikejdbc.package#convertBigDecimal" data-isabs="false">
+      <a id="convertBigDecimal(BigDecimal):ScalaBigDecimalConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convertBigDecimal</span><span class="params">(<span name="bd">bd: <span name="java.math.BigDecimal" class="extype">BigDecimal</span></span>)</span><span class="result">: <a name="scalikejdbc.package.ScalaBigDecimalConverter" class="extype" href="package$$ScalaBigDecimalConverter.html">ScalaBigDecimalConverter</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.package#convertJavaSqlDateToConverter" data-isabs="false">
+      <a id="convertJavaSqlDateToConverter(Date):UnixTimeInMillisConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convertJavaSqlDateToConverter</span><span class="params">(<span name="t">t: <span name="java.sql.Date" class="extype">Date</span></span>)</span><span class="result">: <a name="scalikejdbc.package.UnixTimeInMillisConverter" class="extype" href="package$$UnixTimeInMillisConverter.html">UnixTimeInMillisConverter</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.package#convertJavaSqlTimeToConverter" data-isabs="false">
+      <a id="convertJavaSqlTimeToConverter(Time):UnixTimeInMillisConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convertJavaSqlTimeToConverter</span><span class="params">(<span name="t">t: <span name="java.sql.Time" class="extype">Time</span></span>)</span><span class="result">: <a name="scalikejdbc.package.UnixTimeInMillisConverter" class="extype" href="package$$UnixTimeInMillisConverter.html">UnixTimeInMillisConverter</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.package#convertJavaSqlTimestampToConverter" data-isabs="false">
+      <a id="convertJavaSqlTimestampToConverter(Timestamp):UnixTimeInMillisConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convertJavaSqlTimestampToConverter</span><span class="params">(<span name="t">t: <span name="java.sql.Timestamp" class="extype">Timestamp</span></span>)</span><span class="result">: <a name="scalikejdbc.package.UnixTimeInMillisConverter" class="extype" href="package$$UnixTimeInMillisConverter.html">UnixTimeInMillisConverter</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.package#convertJavaUtilDateToConverter" data-isabs="false">
+      <a id="convertJavaUtilDateToConverter(Date):UnixTimeInMillisConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convertJavaUtilDateToConverter</span><span class="params">(<span name="t">t: <span name="java.util.Date" class="extype">Date</span></span>)</span><span class="result">: <a name="scalikejdbc.package.UnixTimeInMillisConverter" class="extype" href="package$$UnixTimeInMillisConverter.html">UnixTimeInMillisConverter</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.package#convertLocalTimeToConverter" data-isabs="false">
+      <a id="convertLocalTimeToConverter(LocalTime):LocalTimeConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">convertLocalTimeToConverter</span><span class="params">(<span name="t">t: <span name="org.joda.time.LocalTime" class="extype">LocalTime</span></span>)</span><span class="result">: <a name="scalikejdbc.package.LocalTimeConverter" class="extype" href="package$$LocalTimeConverter.html">LocalTimeConverter</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.package#opt" data-isabs="false">
+      <a id="opt[A](Any):Option[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">opt</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="v">v: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[A]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">scala.Option value converter.</p><div class="fullcomment"><div class="comment cmt"><p>scala.Option value converter.</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>raw type</p></dd><dt class="param">v</dt><dd class="cmt"><p>nullable raw value</p></dd><dt>returns</dt><dd class="cmt"><p>optional value
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.package#using" data-isabs="false">
+      <a id="using[R&lt;:Closable, A](R)((R) ⇒ A):A"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">using</span><span class="tparams">[<span name="R">R &lt;: Closable</span>, <span name="A">A</span>]</span><span class="params">(<span name="resource">resource: R</span>)</span><span class="params">(<span name="f">f: (R) ⇒ A</span>)</span><span class="result">: A</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
