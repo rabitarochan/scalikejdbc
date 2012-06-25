@@ -158,6 +158,32 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.DBSession#batch" data-isabs="false">
+      <a id="batch(Seq[String]):Seq[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">batch</span><span class="params">(<span name="sqlList">sqlList: Seq[String]</span>)</span><span class="result">: Seq[<span name="scala.Int" class="extype">Int</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Executes java.sql.PreparedStatement#executeBatch()</p><div class="fullcomment"><div class="comment cmt"><p>Executes java.sql.PreparedStatement#executeBatch()</p></div><dl class="paramcmts block"><dt class="param">sqlList</dt><dd class="cmt"><p>SQL list</p></dd><dt>returns</dt><dd class="cmt"><p>count list
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.DBSession#batch" data-isabs="false">
+      <a id="batch(String,Seq[Any]*):Seq[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">batch</span><span class="params">(<span name="template">template: String</span>, <span name="paramsList">paramsList: Seq[<span name="scala.Any" class="extype">Any</span>]*</span>)</span><span class="result">: Seq[<span name="scala.Int" class="extype">Int</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Executes java.sql.PreparedStatement#executeBatch()</p><div class="fullcomment"><div class="comment cmt"><p>Executes java.sql.PreparedStatement#executeBatch()</p></div><dl class="paramcmts block"><dt class="param">template</dt><dd class="cmt"><p>SQL template</p></dd><dt class="param">paramsList</dt><dd class="cmt"><p>list of parameters</p></dd><dt>returns</dt><dd class="cmt"><p>count list
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.ActiveSession#canEqual" data-isabs="false">
       <a id="canEqual(Any):Boolean"></a>
       <h4 class="signature">
@@ -584,7 +610,7 @@ If the result is not single, <a name="scalikejdbc.TooManyRowsException" class="e
       </span>
       </h4>
       <p class="shortcomment cmt">Executes java.sql.PreparedStatement#executeUpdate() and returns the generated key.</p><div class="fullcomment"><div class="comment cmt"><p>Executes java.sql.PreparedStatement#executeUpdate() and returns the generated key.
-</p></div><dl class="paramcmts block"><dt class="param">template</dt><dd class="cmt"><p>SQL template</p></dd><dt class="param">params</dt><dd class="cmt"><p>paramters</p></dd><dt>returns</dt><dd class="cmt"><p>generated key as a long value
+</p></div><dl class="paramcmts block"><dt class="param">template</dt><dd class="cmt"><p>SQL template</p></dd><dt class="param">params</dt><dd class="cmt"><p>parameters</p></dd><dt>returns</dt><dd class="cmt"><p>generated key as a long value
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DBSession#updateWithFilters" data-isabs="false">
       <a id="updateWithFilters(Boolean,(PreparedStatement) ⇒ Unit,(PreparedStatement) ⇒ Unit,String,Any*):Int"></a>

@@ -175,7 +175,7 @@ and returns the result as scala.collection.Traversable value.</p></div><dl class
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">apply</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="session">session: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>, <span name="hasExtractor">hasExtractor: <span name="scala.Predef.=:=" class="extype">=:=</span>[ThisSQL, SQLWithExtractor]</span>)</span><span class="result">: Traversable[A]</span>
+        <span class="name">apply</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="session">session: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>, <span name="hasExtractor">hasExtractor: <a name="scalikejdbc.GeneralizedTypeConstraintsForWithExtractor.=:=" class="extype" href="GeneralizedTypeConstraintsForWithExtractor$$$eq$colon$eq.html">=:=</a>[ThisSQL, SQLWithExtractor]</span>)</span><span class="result">: Traversable[A]</span>
       </span>
       </h4>
       
@@ -191,6 +191,32 @@ and returns the result as scala.collection.Traversable value.</p></div><dl class
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.SQL#batch" data-isabs="false">
+      <a id="batch(Seq[Any]*):SQLBatch"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">batch</span><span class="params">(<span name="params">params: Seq[<span name="scala.Any" class="extype">Any</span>]*</span>)</span><span class="result">: <a name="scalikejdbc.SQLBatch" class="extype" href="SQLBatch.html">SQLBatch</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Binds params for batch</p><div class="fullcomment"><div class="comment cmt"><p>Binds params for batch</p></div><dl class="paramcmts block"><dt class="param">params</dt><dd class="cmt"><p>params</p></dd><dt>returns</dt><dd class="cmt"><p>SQL for batch
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.SQL#batchByName" data-isabs="false">
+      <a id="batchByName(Seq[(Symbol, Any)]*):SQLBatch"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">batchByName</span><span class="params">(<span name="params">params: Seq[(<span name="scala.Symbol" class="extype">Symbol</span>, <span name="scala.Any" class="extype">Any</span>)]*</span>)</span><span class="result">: <a name="scalikejdbc.SQLBatch" class="extype" href="SQLBatch.html">SQLBatch</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Binds params for batch</p><div class="fullcomment"><div class="comment cmt"><p>Binds params for batch</p></div><dl class="paramcmts block"><dt class="param">params</dt><dd class="cmt"><p>params</p></dd><dt>returns</dt><dd class="cmt"><p>SQL for batch
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.SQL#bind" data-isabs="false">
       <a id="bind(Any*):SQL[A, E]"></a>
       <h4 class="signature">
@@ -202,7 +228,7 @@ and returns the result as scala.collection.Traversable value.</p></div><dl class
         <span class="name">bind</span><span class="params">(<span name="params">params: <span name="scala.Any" class="extype">Any</span>*</span>)</span><span class="result">: <a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a>[A, E]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Bind parameters to SQL template in order.</p><div class="fullcomment"><div class="comment cmt"><p>Bind parameters to SQL template in order.</p></div><dl class="paramcmts block"><dt class="param">params</dt><dd class="cmt"><p>parameters</p></dd><dt>returns</dt><dd class="cmt"><p>SQL instance
+      <p class="shortcomment cmt">Binds parameters to SQL template in order.</p><div class="fullcomment"><div class="comment cmt"><p>Binds parameters to SQL template in order.</p></div><dl class="paramcmts block"><dt class="param">params</dt><dd class="cmt"><p>parameters</p></dd><dt>returns</dt><dd class="cmt"><p>SQL instance
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.SQL#bindByName" data-isabs="false">
       <a id="bindByName((Symbol, Any)*):SQL[A, E]"></a>
@@ -215,7 +241,7 @@ and returns the result as scala.collection.Traversable value.</p></div><dl class
         <span class="name">bindByName</span><span class="params">(<span name="paramsByName">paramsByName: (<span name="scala.Symbol" class="extype">Symbol</span>, <span name="scala.Any" class="extype">Any</span>)*</span>)</span><span class="result">: <a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a>[A, E]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Bind named parameters to SQL template.</p><div class="fullcomment"><div class="comment cmt"><p>Bind named parameters to SQL template.</p></div><dl class="paramcmts block"><dt class="param">paramsByName</dt><dd class="cmt"><p>named parameters</p></dd><dt>returns</dt><dd class="cmt"><p>SQL instance
+      <p class="shortcomment cmt">Binds named parameters to SQL template.</p><div class="fullcomment"><div class="comment cmt"><p>Binds named parameters to SQL template.</p></div><dl class="paramcmts block"><dt class="param">paramsByName</dt><dd class="cmt"><p>named parameters</p></dd><dt>returns</dt><dd class="cmt"><p>SQL instance
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a></dd></dl></div>
     </li><li visbl="prt" name="scala.AnyRef#clone" data-isabs="false">
       <a id="clone():AnyRef"></a>
@@ -335,6 +361,19 @@ and returns the result as scala.collection.Traversable value.</p></div><dl class
       </span>
       </h4>
       <p class="shortcomment cmt">Set execution type as first.</p><div class="fullcomment"><div class="comment cmt"><p>Set execution type as first.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>SQL instance
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.SQL#foreach" data-isabs="false">
+      <a id="foreach((WrappedResultSet) ⇒ Unit)(DBSession):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">foreach</span><span class="params">(<span name="op">op: (<a name="scalikejdbc.WrappedResultSet" class="extype" href="WrappedResultSet.html">WrappedResultSet</a>) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="session">session: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Aplly the operation to all elements of result set</p><div class="fullcomment"><div class="comment cmt"><p>Aplly the operation to all elements of result set</p></div><dl class="paramcmts block"><dt class="param">op</dt><dd class="cmt"><p>operation
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#getClass" data-isabs="false">
       <a id="getClass():java.lang.Class[_]"></a>
