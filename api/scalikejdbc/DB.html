@@ -33,7 +33,7 @@
   <span class="kw">import</span> scalikejdbc._
   <span class="kw">case</span> <span class="kw">class</span> User(id: <span class="std">Int</span>, name: <span class="std">String</span>)
 
-  using(ConnectionPool.borrow()) { conn <span class="kw">=&gt;</span>
+  using(connectionPool(context).borrow()) { conn <span class="kw">=&gt;</span>
 
     <span class="kw">val</span> users = DB(conn) readOnly { session <span class="kw">=&gt;</span>
       session.list(<span class="lit">"select * from user"</span>) { rs <span class="kw">=&gt;</span>

@@ -25,7 +25,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">NamedDB</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result"> extends <span name="scala.Product" class="extype">Product</span> with <span name="scala.Serializable" class="extype">Serializable</span></span>
+        <span class="name">NamedDB</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span></span>, <span name="context">context: <a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a></span>)</span><span class="result"> extends <span name="scala.Product" class="extype">Product</span> with <span name="scala.Serializable" class="extype">Serializable</span></span>
       </span>
       </h4>
       
@@ -70,7 +70,7 @@ ConnectionPool.add('named, <span class="lit">"jdbc:..."</span>, <span class="lit
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">NamedDB</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span></span>)</span>
+        <span class="name">NamedDB</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: <a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a> = <span class="symbol">NoConnectionPoolContext</span></span>)</span>
       </span>
       </h4>
       

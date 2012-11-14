@@ -137,6 +137,19 @@ It's pretty simple, really.</p><p>Basic Usage:</p><p>Using <a name="scalikejdbc.
       </h4>
       <p class="comment cmt">Connection Pool
 </p>
+    </li><li visbl="pub" name="scalikejdbc.ConnectionPoolContext" data-isabs="true">
+      <a id="ConnectionPoolContext:ConnectionPoolContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ConnectionPoolContext.html"><span class="name">ConnectionPoolContext</span></a><span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Connection pool context
+</p>
     </li><li visbl="pub" name="scalikejdbc.ConnectionPoolFactory" data-isabs="true">
       <a id="ConnectionPoolFactory:ConnectionPoolFactory"></a>
       <h4 class="signature">
@@ -225,6 +238,19 @@ It's pretty simple, really.</p><p>Basic Usage:</p><p>Using <a name="scalikejdbc.
       </h4>
       <p class="comment cmt">Settings for logging SQL and timing
 </p>
+    </li><li visbl="pub" name="scalikejdbc.MultipleConnectionPoolContext" data-isabs="false">
+      <a id="MultipleConnectionPoolContext:MultipleConnectionPoolContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="MultipleConnectionPoolContext.html"><span class="name">MultipleConnectionPoolContext</span></a><span class="params">(<span name="contexts">contexts: (Any, ConnectionPool)*</span>)</span><span class="result"> extends ConnectionPoolContext with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Multiple connection pool context
+</p>
     </li><li visbl="pub" name="scalikejdbc.NamedAutoSession" data-isabs="false">
       <a id="NamedAutoSession:NamedAutoSession"></a>
       <h4 class="signature">
@@ -245,7 +271,7 @@ It's pretty simple, really.</p><p>Basic Usage:</p><p>Using <a name="scalikejdbc.
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="NamedDB.html"><span class="name">NamedDB</span></a><span class="params">(<span name="name">name: Any</span>)</span><span class="result"> extends Product with Serializable</span>
+        <a href="NamedDB.html"><span class="name">NamedDB</span></a><span class="params">(<span name="name">name: Any</span>, <span name="context">context: ConnectionPoolContext</span>)</span><span class="result"> extends Product with Serializable</span>
       </span>
       </h4>
       <p class="comment cmt">Named Basic DB Accessor</p>
@@ -411,6 +437,18 @@ and returns the result as scala.collection.Traversable value.</p>
       </span>
       </h4>
       <p class="comment cmt">java.sql.Statement Executor</p>
+    </li><li visbl="pub" name="scalikejdbc.StringSQLRunner" data-isabs="false">
+      <a id="StringSQLRunner:StringSQLRunner"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="StringSQLRunner.html"><span class="name">StringSQLRunner</span></a><span class="params">(<span name="sql">sql: String</span>)</span><span class="result"> extends Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">String SQL Runner</p>
     </li><li visbl="pub" name="scalikejdbc.TooManyRowsException" data-isabs="false">
       <a id="TooManyRowsException:TooManyRowsException"></a>
       <h4 class="signature">
@@ -541,18 +579,6 @@ and returns the result as scala.collection.Traversable value.</p>
       </span>
       </h4>
       
-    </li><li visbl="pub" name="scalikejdbc.ExecutableSQLParser" data-isabs="false">
-      <a id="ExecutableSQLParser:ExecutableSQLParser"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="ExecutableSQLParser$.html"><span class="name">ExecutableSQLParser</span></a><span class="result"> extends JavaTokenParsers with LogSupport</span>
-      </span>
-      </h4>
-      <p class="comment cmt">ExecutableSQL Parser.</p>
     </li><li visbl="pub" name="scalikejdbc.GeneralizedTypeConstraintsForWithExtractor" data-isabs="false">
       <a id="GeneralizedTypeConstraintsForWithExtractor:GeneralizedTypeConstraintsForWithExtractor"></a>
       <h4 class="signature">
@@ -592,6 +618,19 @@ and returns the result as scala.collection.Traversable value.</p>
       </h4>
       <p class="comment cmt">Loan pattern implementation
 </p>
+    </li><li visbl="pub" name="scalikejdbc.NoConnectionPoolContext" data-isabs="false">
+      <a id="NoConnectionPoolContext:NoConnectionPoolContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NoConnectionPoolContext$.html"><span class="name">NoConnectionPoolContext</span></a><span class="result"> extends ConnectionPoolContext</span>
+      </span>
+      </h4>
+      <p class="comment cmt">No Connection Pool Context
+</p>
     </li><li visbl="pub" name="scalikejdbc.NoSession" data-isabs="false">
       <a id="NoSession:NoSession"></a>
       <h4 class="signature">
@@ -616,6 +655,30 @@ and returns the result as scala.collection.Traversable value.</p>
       </span>
       </h4>
       <p class="comment cmt">SQL abstraction's companion object.</p>
+    </li><li visbl="pub" name="scalikejdbc.SQLTemplateParser" data-isabs="false">
+      <a id="SQLTemplateParser:SQLTemplateParser"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SQLTemplateParser$.html"><span class="name">SQLTemplateParser</span></a><span class="result"> extends JavaTokenParsers with LogSupport</span>
+      </span>
+      </h4>
+      <p class="comment cmt">SQL Template Parser.</p>
+    </li><li visbl="pub" name="scalikejdbc.StringSQLRunner" data-isabs="false">
+      <a id="StringSQLRunner:StringSQLRunner"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="StringSQLRunner$.html"><span class="name">StringSQLRunner</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scalikejdbc.ThreadLocalDB" data-isabs="false">
       <a id="ThreadLocalDB:ThreadLocalDB"></a>
       <h4 class="signature">
@@ -728,7 +791,25 @@ and returns the result as scala.collection.Traversable value.</p>
     </li></ol>
             </div>
 
-        
+        <div class="values members" id="values">
+              <h3>Deprecated Value Members</h3>
+              <ol><li visbl="pub" name="scalikejdbc.package#ExecutableSQLParser" data-isabs="false">
+      <a id="ExecutableSQLParser:scalikejdbc.SQLTemplateParser.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 1.4.0) ExecutableSQLParser renamed ifself SQLTemplateParser">ExecutableSQLParser</span><span class="result">: scalikejdbc.SQLTemplateParser.type</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 1.4.0)</i> ExecutableSQLParser renamed ifself SQLTemplateParser</p></dd></dl></div>
+    </li></ol>
+            </div>
         </div>
 
         <div id="inheritedMembers">

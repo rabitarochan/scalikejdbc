@@ -117,7 +117,22 @@
         <div id="allMembers">
         
 
-        
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="scalikejdbc.DB#CPContext" data-isabs="false">
+      <a id="CPContext:CPContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CPContext</span><span class="result"> = <a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
 
         
 
@@ -183,6 +198,18 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.DB#NoCPContext" data-isabs="false">
+      <a id="NoCPContext:scalikejdbc.NoConnectionPoolContext.type"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">NoCPContext</span><span class="result">: scalikejdbc.NoConnectionPoolContext.type</span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scalikejdbc.DB#apply" data-isabs="false">
       <a id="apply(⇒ Connection):DB"></a>
       <h4 class="signature">
@@ -209,46 +236,48 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#autoCommit" data-isabs="false">
-      <a id="autoCommit[A]((DBSession) ⇒ A):A"></a>
+      <a id="autoCommit[A]((DBSession) ⇒ A)(CPContext):A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">autoCommit</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>) ⇒ A</span>)</span><span class="result">: A</span>
+        <span class="name">autoCommit</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>) ⇒ A</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: A</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Begins a auto-commit block easily with ConnectionPool.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a auto-commit block easily with ConnectionPool.</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt>returns</dt><dd class="cmt"><p>result value
+      <p class="shortcomment cmt">Begins a auto-commit block easily with ConnectionPool.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a auto-commit block easily with ConnectionPool.
+</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>result value
 </p></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#autoCommitSession" data-isabs="false">
-      <a id="autoCommitSession():DBSession"></a>
+      <a id="autoCommitSession()(CPContext):DBSession"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">autoCommitSession</span><span class="params">()</span><span class="result">: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>
+        <span class="name">autoCommitSession</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns auto-commit session instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns auto-commit session instance. You SHOULD close this instance by yourself.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>session
+      <p class="shortcomment cmt">Returns auto-commit session instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns auto-commit session instance. You SHOULD close this instance by yourself.
+</p></div><dl class="paramcmts block"><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>session
 </p></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#autoCommitWithConnection" data-isabs="false">
-      <a id="autoCommitWithConnection[A]((Connection) ⇒ A):A"></a>
+      <a id="autoCommitWithConnection[A]((Connection) ⇒ A)(CPContext):A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">autoCommitWithConnection</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<span name="java.sql.Connection" class="extype">Connection</span>) ⇒ A</span>)</span><span class="result">: A</span>
+        <span class="name">autoCommitWithConnection</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<span name="java.sql.Connection" class="extype">Connection</span>) ⇒ A</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: A</span>
       </span>
       </h4>
       <p class="shortcomment cmt">Begins a auto-commit block easily with ConnectionPool
 and pass not session but connection to execution block.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a auto-commit block easily with ConnectionPool
 and pass not session but connection to execution block.
-</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt>returns</dt><dd class="cmt"><p>result value
+</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>result value
 </p></dd></dl></div>
     </li><li visbl="prt" name="scala.AnyRef#clone" data-isabs="false">
       <a id="clone():AnyRef"></a>
@@ -369,33 +398,34 @@ and pass not session but connection to execution block.
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#localTx" data-isabs="false">
-      <a id="localTx[A]((DBSession) ⇒ A):A"></a>
+      <a id="localTx[A]((DBSession) ⇒ A)(CPContext):A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">localTx</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>) ⇒ A</span>)</span><span class="result">: A</span>
+        <span class="name">localTx</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>) ⇒ A</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: A</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Begins a local-tx block easily with ConnectionPool.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a local-tx block easily with ConnectionPool.</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt>returns</dt><dd class="cmt"><p>result value
+      <p class="shortcomment cmt">Begins a local-tx block easily with ConnectionPool.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a local-tx block easily with ConnectionPool.
+</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>result value
 </p></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#localTxWithConnection" data-isabs="false">
-      <a id="localTxWithConnection[A]((Connection) ⇒ A):A"></a>
+      <a id="localTxWithConnection[A]((Connection) ⇒ A)(CPContext):A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">localTxWithConnection</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<span name="java.sql.Connection" class="extype">Connection</span>) ⇒ A</span>)</span><span class="result">: A</span>
+        <span class="name">localTxWithConnection</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<span name="java.sql.Connection" class="extype">Connection</span>) ⇒ A</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: A</span>
       </span>
       </h4>
       <p class="shortcomment cmt">Begins a local-tx block easily with ConnectionPool
 and pass not session but connection to execution block.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a local-tx block easily with ConnectionPool
 and pass not session but connection to execution block.
-</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt>returns</dt><dd class="cmt"><p>result value
+</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>result value
 </p></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#ne" data-isabs="false">
       <a id="ne(AnyRef):Boolean"></a>
@@ -434,47 +464,48 @@ and pass not session but connection to execution block.
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#readOnly" data-isabs="false">
-      <a id="readOnly[A]((DBSession) ⇒ A):A"></a>
+      <a id="readOnly[A]((DBSession) ⇒ A)(CPContext):A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">readOnly</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>) ⇒ A</span>)</span><span class="result">: A</span>
+        <span class="name">readOnly</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>) ⇒ A</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: A</span>
       </span>
       </h4>
       <p class="shortcomment cmt">Begins a read-only block easily with ConnectionPool.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a read-only block easily with ConnectionPool.
-</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt>returns</dt><dd class="cmt"><p>result value
+</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>result value
 </p></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#readOnlySession" data-isabs="false">
-      <a id="readOnlySession():DBSession"></a>
+      <a id="readOnlySession()(CPContext):DBSession"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">readOnlySession</span><span class="params">()</span><span class="result">: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>
+        <span class="name">readOnlySession</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Returns read-only session instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns read-only session instance. You SHOULD close this instance by yourself.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>session
+      <p class="shortcomment cmt">Returns read-only session instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns read-only session instance. You SHOULD close this instance by yourself.
+</p></div><dl class="paramcmts block"><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>session
 </p></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#readOnlyWithConnection" data-isabs="false">
-      <a id="readOnlyWithConnection[A]((Connection) ⇒ A):A"></a>
+      <a id="readOnlyWithConnection[A]((Connection) ⇒ A)(CPContext):A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">readOnlyWithConnection</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<span name="java.sql.Connection" class="extype">Connection</span>) ⇒ A</span>)</span><span class="result">: A</span>
+        <span class="name">readOnlyWithConnection</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="execution">execution: (<span name="java.sql.Connection" class="extype">Connection</span>) ⇒ A</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: A</span>
       </span>
       </h4>
       <p class="shortcomment cmt">Begins a read-only block easily with ConnectionPool
 and pass not session but connection to execution block.</p><div class="fullcomment"><div class="comment cmt"><p>Begins a read-only block easily with ConnectionPool
 and pass not session but connection to execution block.
-</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt>returns</dt><dd class="cmt"><p>result value
+</p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context</p></dd><dt>returns</dt><dd class="cmt"><p>result value
 </p></dd></dl></div>
     </li><li visbl="prt" name="scalikejdbc.DB#readResolve" data-isabs="false">
       <a id="readResolve():AnyRef"></a>
@@ -572,18 +603,18 @@ and pass not session but connection to execution block.
 </p></div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>return type</p></dd><dt class="param">execution</dt><dd class="cmt"><p>execution</p></dd><dt class="param">db</dt><dd class="cmt"><p>DB instance as an implicit parameter</p></dd><dt>returns</dt><dd class="cmt"><p>result value
 </p></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#withinTxSession" data-isabs="false">
-      <a id="withinTxSession():DBSession"></a>
+      <a id="withinTxSession()(DB):DBSession"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">withinTxSession</span><span class="params">()</span><span class="result">: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>
+        <span class="name">withinTxSession</span><span class="params">()</span><span class="params">(<span class="implicit">implicit </span><span name="db">db: <a name="scalikejdbc.DB" class="extype" href="DB.html">DB</a></span>)</span><span class="result">: <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a></span>
       </span>
       </h4>
       <p class="shortcomment cmt">Returns within-tx session instance.</p><div class="fullcomment"><div class="comment cmt"><p>Returns within-tx session instance. You SHOULD close this instance by yourself.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>session
+</p></div><dl class="paramcmts block"><dt class="param">db</dt><dd class="cmt"><p>DB instance as an implicit parameter</p></dd><dt>returns</dt><dd class="cmt"><p>session
 </p></dd></dl></div>
     </li><li visbl="pub" name="scalikejdbc.DB#withinTxWithConnection" data-isabs="false">
       <a id="withinTxWithConnection[A]((Connection) ⇒ A)(DB):A"></a>

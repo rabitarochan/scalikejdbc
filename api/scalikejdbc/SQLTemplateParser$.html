@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>scalikejdbc.ExecutableSQLParser</title>
+          <title>scalikejdbc.SQLTemplateParser</title>
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link type="text/css" media="screen" rel="stylesheet" href="../lib/template.css" />
@@ -16,7 +16,7 @@
       <div id="definition">
         <img src="../lib/object_big.png" />
         <p id="owner"><a name="scalikejdbc" class="extype" href="package.html">scalikejdbc</a></p>
-        <h1>ExecutableSQLParser</h1>
+        <h1>SQLTemplateParser</h1>
       </div>
 
       <h4 class="signature" id="signature">
@@ -25,16 +25,19 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">ExecutableSQLParser</span><span class="result"> extends <span name="scala.util.parsing.combinator.JavaTokenParsers" class="extype">JavaTokenParsers</span> with <span name="scalikejdbc.LogSupport" class="extype">LogSupport</span></span>
+        <span class="name">SQLTemplateParser</span><span class="result"> extends <span name="scala.util.parsing.combinator.JavaTokenParsers" class="extype">JavaTokenParsers</span> with <span name="scalikejdbc.LogSupport" class="extype">LogSupport</span></span>
       </span>
       </h4>
       
-      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>ExecutableSQL Parser.</p><p><code>ExecutableSQL</code> is the template which contains parameter names just as comments with dummy values without specific syntax.
-The template is a valid SQL, so you can check it is correct before building into app.</p><p>For example,</p><p>Normal SQL Template:</p><pre>
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>SQL Template Parser.</p><p>This parser supports following templates.</p><p>Basic SQL Template:</p><pre>
 select * from user where id = ? and user_name = ?
-</pre><p>ExecutableSQL Template:</p><pre>
+</pre><p>Anorm-like SQL Template:</p><pre>
+select * from user where id = {id} and user_name = {userName}
+</pre><p>Executable SQL Template:</p><pre>
 select * from user where id = <span class="cmt">/*'id*/</span><span class="num">23</span> and user_name = <span class="cmt">/*'userName*/</span><span class="lit">'Alice'</span>
-</pre></div><div class="toggleContainer block">
+</pre><p><code>ExecutableSQL</code> is the template which contains parameter names just as comments with dummy values without specific syntax.
+The template is a valid SQL, so you can check it is correct before building into app.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span name="scalikejdbc.LogSupport" class="extype">LogSupport</span>, <span name="scala.util.parsing.combinator.JavaTokenParsers" class="extype">JavaTokenParsers</span>, <span name="scala.util.parsing.combinator.RegexParsers" class="extype">RegexParsers</span>, <span name="scala.util.parsing.combinator.Parsers" class="extype">Parsers</span>, AnyRef, <span name="scala.Any" class="extype">Any</span></div>
         </div></div>
@@ -50,7 +53,7 @@ select * from user where id = <span class="cmt">/*'id*/</span><span class="num">
               <span class="filtertype">Inherited</span>
               <ol><li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li></ol>
-              <ol id="linearization"><li name="scalikejdbc.ExecutableSQLParser" class="in"><span>ExecutableSQLParser</span></li><li name="scalikejdbc.LogSupport" class="in"><span>LogSupport</span></li><li name="scala.util.parsing.combinator.JavaTokenParsers" class="in"><span>JavaTokenParsers</span></li><li name="scala.util.parsing.combinator.RegexParsers" class="in"><span>RegexParsers</span></li><li name="scala.util.parsing.combinator.Parsers" class="in"><span>Parsers</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
+              <ol id="linearization"><li name="scalikejdbc.SQLTemplateParser" class="in"><span>SQLTemplateParser</span></li><li name="scalikejdbc.LogSupport" class="in"><span>LogSupport</span></li><li name="scala.util.parsing.combinator.JavaTokenParsers" class="in"><span>JavaTokenParsers</span></li><li name="scala.util.parsing.combinator.RegexParsers" class="in"><span>RegexParsers</span></li><li name="scala.util.parsing.combinator.Parsers" class="in"><span>Parsers</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
             </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -326,7 +329,7 @@ select * from user where id = <span class="cmt">/*'id*/</span><span class="num">
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parsers</dd></dl></div>
-    </li><li visbl="pub" name="scalikejdbc.ExecutableSQLParser#convertToSQLWithPlaceHolders" data-isabs="false">
+    </li><li visbl="pub" name="scalikejdbc.SQLTemplateParser#convertToSQLWithPlaceHolders" data-isabs="false">
       <a id="convertToSQLWithPlaceHolders(String):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -412,7 +415,7 @@ select * from user where id = <span class="cmt">/*'id*/</span><span class="num">
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Parsers</dd></dl></div>
-    </li><li visbl="pub" name="scalikejdbc.ExecutableSQLParser#extractAllParameters" data-isabs="false">
+    </li><li visbl="pub" name="scalikejdbc.SQLTemplateParser#extractAllParameters" data-isabs="false">
       <a id="extractAllParameters(String):List[Symbol]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -902,6 +905,21 @@ select * from user where id = <span class="cmt">/*'id*/</span><span class="num">
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.SQLTemplateParser#trimComments" data-isabs="false">
+      <a id="trimComments(String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">trimComments</span><span class="params">(<span name="input">input: String</span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Trims comments
+</p><div class="fullcomment"><div class="comment cmt"><p>Trims comments
+</p></div><dl class="paramcmts block"><dt class="param">input</dt><dd class="cmt"><p>SQL tempalte</p></dd><dt>returns</dt><dd class="cmt"><p>SQL template without comments
+</p></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
       <a id="wait():Unit"></a>
       <h4 class="signature">

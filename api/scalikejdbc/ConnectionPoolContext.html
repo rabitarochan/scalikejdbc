@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>scalikejdbc.ResultSetCursor</title>
+          <title>scalikejdbc.ConnectionPoolContext</title>
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link type="text/css" media="screen" rel="stylesheet" href="../lib/template.css" />
@@ -14,25 +14,28 @@
         </head>
         <body onload="sh_highlightDocument('../lib/', '.min.js');" class="type">
       <div id="definition">
-        <img src="../lib/class_big.png" />
+        <img src="../lib/trait_big.png" />
         <p id="owner"><a name="scalikejdbc" class="extype" href="package.html">scalikejdbc</a></p>
-        <h1>ResultSetCursor</h1>
+        <h1>ConnectionPoolContext</h1>
       </div>
 
       <h4 class="signature" id="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">class</span>
+        <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">ResultSetCursor</span><span class="result"> extends AnyRef</span>
+        <span class="name">ConnectionPoolContext</span><span class="result"> extends AnyRef</span>
       </span>
       </h4>
       
-      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>java.sql.ResultSet cursor
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Connection pool context
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent">AnyRef, <span name="scala.Any" class="extype">Any</span></div>
+        </div><div class="toggleContainer block">
+          <span class="toggle">Known Subclasses</span>
+          <div class="subClasses hiddenContent"><a name="scalikejdbc.MultipleConnectionPoolContext" class="extype" href="MultipleConnectionPoolContext.html">MultipleConnectionPoolContext</a>, <a name="scalikejdbc.NoConnectionPoolContext" class="extype" href="NoConnectionPoolContext$.html">NoConnectionPoolContext</a></div>
         </div></div>
     
 
@@ -46,7 +49,7 @@
               <span class="filtertype">Inherited</span>
               <ol><li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li></ol>
-              <ol id="linearization"><li name="scalikejdbc.ResultSetCursor" class="in"><span>ResultSetCursor</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
+              <ol id="linearization"><li name="scalikejdbc.ConnectionPoolContext" class="in"><span>ConnectionPoolContext</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
             </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -56,29 +59,41 @@
 
       <div id="template">
         <div id="allMembers">
-        <div class="members" id="constructors">
-              <h3>Instance Constructors</h3>
-              <ol><li visbl="pub" name="scalikejdbc.ResultSetCursor#this" data-isabs="false">
-      <a id="this:ResultSetCursor"></a>
+        
+
+        
+
+        <div class="values members" id="values">
+              <h3>Abstract Value Members</h3>
+              <ol><li visbl="pub" name="scalikejdbc.ConnectionPoolContext#get" data-isabs="true">
+      <a id="get(Any):ConnectionPool"></a>
       <h4 class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ResultSetCursor</span><span class="params">(<span name="position">position: <span name="scala.Int" class="extype">Int</span></span>)</span>
+        <span class="name">get</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span> = <span class="symbol"><span class="name"><a href="ConnectionPool$.html">ConnectionPool.DEFAULT_NAME</a></span></span></span>)</span><span class="result">: <a name="scalikejdbc.ConnectionPool" class="extype" href="ConnectionPool.html">ConnectionPool</a></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="scalikejdbc.ConnectionPoolContext#set" data-isabs="true">
+      <a id="set(Any,ConnectionPool):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">set</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span></span>, <span name="pool">pool: <a name="scalikejdbc.ConnectionPool" class="extype" href="ConnectionPool.html">ConnectionPool</a></span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
       
     </li></ol>
             </div>
 
-        
-
-        
-
         <div class="values members" id="values">
-              <h3>Value Members</h3>
+              <h3>Concrete Value Members</h3>
               <ol><li visbl="pub" name="scala.AnyRef#!=" data-isabs="false">
       <a id="!=(AnyRef):Boolean"></a>
       <h4 class="signature">
@@ -277,18 +292,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li visbl="pub" name="scalikejdbc.ResultSetCursor#position" data-isabs="false">
-      <a id="position:Int"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">var</span>
-      </span>
-      <span class="symbol">
-        <span class="name">position</span><span class="result">: <span name="scala.Int" class="extype">Int</span></span>
-      </span>
-      </h4>
-      
     </li><li visbl="pub" name="scala.AnyRef#synchronized" data-isabs="false">
       <a id="synchronized[T0](⇒ T0):T0"></a>
       <h4 class="signature">

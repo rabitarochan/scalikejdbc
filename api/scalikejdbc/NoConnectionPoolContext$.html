@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>scalikejdbc.ThreadLocalDB</title>
+          <title>scalikejdbc.NoConnectionPoolContext</title>
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link type="text/css" media="screen" rel="stylesheet" href="../lib/template.css" />
@@ -16,7 +16,7 @@
       <div id="definition">
         <img src="../lib/object_big.png" />
         <p id="owner"><a name="scalikejdbc" class="extype" href="package.html">scalikejdbc</a></p>
-        <h1>ThreadLocalDB</h1>
+        <h1>NoConnectionPoolContext</h1>
       </div>
 
       <h4 class="signature" id="signature">
@@ -25,14 +25,14 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">ThreadLocalDB</span><span class="result"> extends AnyRef</span>
+        <span class="name">NoConnectionPoolContext</span><span class="result"> extends <a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a></span>
       </span>
       </h4>
       
-      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Thread-local DB.
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>No Connection Pool Context
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent">AnyRef, <span name="scala.Any" class="extype">Any</span></div>
+          <div class="superTypes hiddenContent"><a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a>, AnyRef, <span name="scala.Any" class="extype">Any</span></div>
         </div></div>
     
 
@@ -46,7 +46,7 @@
               <span class="filtertype">Inherited</span>
               <ol><li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li></ol>
-              <ol id="linearization"><li name="scalikejdbc.ThreadLocalDB" class="in"><span>ThreadLocalDB</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
+              <ol id="linearization"><li name="scalikejdbc.NoConnectionPoolContext" class="in"><span>NoConnectionPoolContext</span></li><li name="scalikejdbc.ConnectionPoolContext" class="in"><span>ConnectionPoolContext</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
             </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -151,20 +151,6 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li visbl="pub" name="scalikejdbc.ThreadLocalDB#create" data-isabs="false">
-      <a id="create(⇒ Connection):DB"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">create</span><span class="params">(<span name="conn">conn: ⇒ <span name="java.sql.Connection" class="extype">Connection</span></span>)</span><span class="result">: <a name="scalikejdbc.DB" class="extype" href="DB.html">DB</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Creates a new DB instance for the current thread.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a new DB instance for the current thread.</p></div><dl class="paramcmts block"><dt class="param">conn</dt><dd class="cmt"><p>
-@return
-</p></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
       <a id="eq(AnyRef):Boolean"></a>
       <h4 class="signature">
@@ -204,6 +190,18 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.NoConnectionPoolContext#get" data-isabs="false">
+      <a id="get(Any):ConnectionPool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span> = <span class="symbol"><span class="name"><a href="ConnectionPool$.html">ConnectionPool.DEFAULT_NAME</a></span></span></span>)</span><span class="result">: <a name="scalikejdbc.ConnectionPool" class="extype" href="ConnectionPool.html">ConnectionPool</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.NoConnectionPoolContext" class="extype" href="">NoConnectionPoolContext</a> → <a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#getClass" data-isabs="false">
       <a id="getClass():java.lang.Class[_]"></a>
       <h4 class="signature">
@@ -240,19 +238,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li visbl="pub" name="scalikejdbc.ThreadLocalDB#load" data-isabs="false">
-      <a id="load():DB"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">load</span><span class="params">()</span><span class="result">: <a name="scalikejdbc.DB" class="extype" href="DB.html">DB</a></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Returns the DB instance for this thread.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the DB instance for this thread. It's nullable.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>DB instance
-</p></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#ne" data-isabs="false">
       <a id="ne(AnyRef):Boolean"></a>
       <h4 class="signature">
@@ -289,6 +274,18 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.NoConnectionPoolContext#set" data-isabs="false">
+      <a id="set(Any,ConnectionPool):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">set</span><span class="params">(<span name="name">name: <span name="scala.Any" class="extype">Any</span></span>, <span name="pool">pool: <a name="scalikejdbc.ConnectionPool" class="extype" href="ConnectionPool.html">ConnectionPool</a></span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.NoConnectionPoolContext" class="extype" href="">NoConnectionPoolContext</a> → <a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#synchronized" data-isabs="false">
       <a id="synchronized[T0](⇒ T0):T0"></a>
       <h4 class="signature">
@@ -365,7 +362,9 @@
         </div>
 
         <div id="inheritedMembers">
-        <div name="scala.AnyRef" class="parent">
+        <div name="scalikejdbc.ConnectionPoolContext" class="parent">
+              <h3>Inherited from <a name="scalikejdbc.ConnectionPoolContext" class="extype" href="ConnectionPoolContext.html">ConnectionPoolContext</a></h3>
+            </div><div name="scala.AnyRef" class="parent">
               <h3>Inherited from AnyRef</h3>
             </div><div name="scala.Any" class="parent">
               <h3>Inherited from <span name="scala.Any" class="extype">Any</span></h3>
