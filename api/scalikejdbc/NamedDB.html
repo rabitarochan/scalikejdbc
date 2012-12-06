@@ -278,6 +278,18 @@ ConnectionPool.add('named, <span class="lit">"jdbc:..."</span>, <span class="lit
       </span>
       </h4>
       
+    </li><li visbl="pub" name="scalikejdbc.NamedDB#describe" data-isabs="false">
+      <a id="describe(String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">describe</span><span class="params">(<span name="table">table: String</span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
       <a id="eq(AnyRef):Boolean"></a>
       <h4 class="signature">
@@ -329,6 +341,30 @@ ConnectionPool.add('named, <span class="lit">"jdbc:..."</span>, <span class="lit
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.NamedDB#getTable" data-isabs="false">
+      <a id="getTable(String):Option[Table]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTable</span><span class="params">(<span name="table">table: String</span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[<a name="scalikejdbc.metadata.Table" class="extype" href="metadata/Table.html">Table</a>]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="scalikejdbc.NamedDB#getTableNames" data-isabs="false">
+      <a id="getTableNames(String,Array[String]):List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTableNames</span><span class="params">(<span name="tableNamePattern">tableNamePattern: String</span>, <span name="tableTypes">tableTypes: <span name="scala.Array" class="extype">Array</span>[String] = <span class="symbol"><span class="name"><a href="../scala/package.html">Array(&quot;TABLE&quot;, &quot;VIEW&quot;)</a></span></span></span>)</span><span class="result">: List[String]</span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scalikejdbc.NamedDB#hashCode" data-isabs="false">
       <a id="hashCode():Int"></a>
       <h4 class="signature">
@@ -578,6 +614,18 @@ ConnectionPool.add('named, <span class="lit">"jdbc:..."</span>, <span class="lit
       </span>
       <span class="symbol">
         <span class="name">rollbackIfActive</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="scalikejdbc.NamedDB#showTables" data-isabs="false">
+      <a id="showTables(String,Array[String]):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">showTables</span><span class="params">(<span name="tableNamePattern">tableNamePattern: String = <span class="symbol">&quot;%&quot;</span></span>, <span name="tableTypes">tableTypes: <span name="scala.Array" class="extype">Array</span>[String] = <span class="symbol"><span class="name"><a href="../scala/package.html">Array(&quot;TABLE&quot;, &quot;VIEW&quot;)</a></span></span></span>)</span><span class="result">: String</span>
       </span>
       </h4>
       

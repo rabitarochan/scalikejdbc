@@ -322,6 +322,21 @@ and pass not session but connection to execution block.
       <p class="shortcomment cmt">Returns a DB instance by using an implicit Connection object.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a DB instance by using an implicit Connection object.
 </p></div><dl class="paramcmts block"><dt class="param">conn</dt><dd class="cmt"><p>connection</p></dd><dt>returns</dt><dd class="cmt"><p>DB instance
 </p></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.DB#describe" data-isabs="false">
+      <a id="describe(String)(CPContext):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">describe</span><span class="params">(<span name="table">table: String</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns describe style string value for the table
+</p><div class="fullcomment"><div class="comment cmt"><p>Returns describe style string value for the table
+</p></div><dl class="paramcmts block"><dt class="param">table</dt><dd class="cmt"><p>table name (with schema optionally)</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context as implicit parameter</p></dd><dt>returns</dt><dd class="cmt"><p>described information
+</p></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
       <a id="eq(AnyRef):Boolean"></a>
       <h4 class="signature">
@@ -373,6 +388,36 @@ and pass not session but connection to execution block.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.DB#getTable" data-isabs="false">
+      <a id="getTable(String)(CPContext):Option[Table]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTable</span><span class="params">(<span name="table">table: String</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[<a name="scalikejdbc.metadata.Table" class="extype" href="metadata/Table.html">Table</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns table information
+</p><div class="fullcomment"><div class="comment cmt"><p>Returns table information
+</p></div><dl class="paramcmts block"><dt class="param">table</dt><dd class="cmt"><p>table name (with schema optionally)</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context as implicit parameter</p></dd><dt>returns</dt><dd class="cmt"><p>table information
+</p></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.DB#getTableNames" data-isabs="false">
+      <a id="getTableNames(String)(CPContext):List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getTableNames</span><span class="params">(<span name="tableNamePattern">tableNamePattern: String</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: List[String]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns multiple table information
+</p><div class="fullcomment"><div class="comment cmt"><p>Returns multiple table information
+</p></div><dl class="paramcmts block"><dt class="param">tableNamePattern</dt><dd class="cmt"><p>table name pattern (with schema optionally)</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context as implicit parameter</p></dd><dt>returns</dt><dd class="cmt"><p>table information
+</p></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#hashCode" data-isabs="false">
       <a id="hashCode():Int"></a>
       <h4 class="signature">
@@ -519,6 +564,21 @@ and pass not session but connection to execution block.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.DB#showTables" data-isabs="false">
+      <a id="showTables(String,Array[String])(CPContext):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">showTables</span><span class="params">(<span name="tableNamePattern">tableNamePattern: String = <span class="symbol">&quot;%&quot;</span></span>, <span name="tableTypes">tableTypes: <span name="scala.Array" class="extype">Array</span>[String] = <span class="symbol"><span class="name"><a href="../scala/package.html">Array(&quot;TABLE&quot;, &quot;VIEW&quot;)</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="context">context: CPContext = <span class="symbol"><span class="name"><a href="#NoCPContext:scalikejdbc.NoConnectionPoolContext.type">NoCPContext</a></span></span></span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns table name list
+</p><div class="fullcomment"><div class="comment cmt"><p>Returns table name list
+</p></div><dl class="paramcmts block"><dt class="param">tableNamePattern</dt><dd class="cmt"><p>table name pattern (with schema optionally)</p></dd><dt class="param">context</dt><dd class="cmt"><p>connection pool context as implicit parameter</p></dd><dt>returns</dt><dd class="cmt"><p>table name list
+</p></dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#synchronized" data-isabs="false">
       <a id="synchronized[T0](⇒ T0):T0"></a>
       <h4 class="signature">

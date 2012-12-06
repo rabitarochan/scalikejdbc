@@ -29,20 +29,16 @@
       </span>
       </h4>
       
-      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>ScalikeJDBC - A thin JDBC wrapper in Scala</p><p>Just write SQL:</p><p>This is a thin JDBC wrapper library which just uses java.sql.PreparedStatement internally.
-Users only need to write SQL and map from java.sql.ResultSet objects to Scala objects.
-It's pretty simple, really.</p><p>Basic Usage:</p><p>Using <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>:</p><pre>
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>ScalikeJDBC - SQL-Based DB Access Library for Scala</p><p>Just write SQL:</p><p>ScalikeJDBC is a SQL-based DB access library for Scala developers.
+This library naturally wraps JDBC APIs and provides you easy-to-use APIs.
+Users do nothing other than writing SQL and mapping from java.sql.ResultSet objects to Scala values.</p><p>Basic Usage:</p><p>Using <a name="scalikejdbc.DBSession" class="extype" href="DBSession.html">DBSession</a>:</p><pre>
 <span class="kw">import</span> scalikejdbc._
 <span class="kw">import</span> org.joda.time.DateTime
 <span class="kw">case</span> <span class="kw">class</span> User(id: <span class="std">Long</span>, name: <span class="std">String</span>, birthday: <span class="std">Option</span>[DateTime])
 
 <span class="kw">val</span> activeUsers: <span class="std">List</span>[User] = DB readOnly { session <span class="kw">=&gt;</span>
-  session.list(<span class="lit">"select * from user where active = ?"</span>, <span class="kw">true</span>) { rs <span class="kw">=&gt;</span>
-    User(
-      id = rs.long(<span class="lit">"id"</span>),
-      name = rs.string(<span class="lit">"name"</span>),
-      birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime)
-    )
+  session.list(<span class="lit">"select * from users where active = ?"</span>, <span class="kw">true</span>) { rs <span class="kw">=&gt;</span>
+    User(id = rs.long(<span class="lit">"id"</span>), name = rs.string(<span class="lit">"name"</span>), birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime))
   }
 }
 </pre><p>Using <a name="scalikejdbc.SQL" class="extype" href="SQL.html">SQL</a>:</p><pre>
@@ -51,22 +47,15 @@ It's pretty simple, really.</p><p>Basic Usage:</p><p>Using <a name="scalikejdbc.
 <span class="kw">case</span> <span class="kw">class</span> User(id: <span class="std">Long</span>, name: <span class="std">String</span>, birthday: <span class="std">Option</span>[DateTime])
 
 <span class="kw">val</span> activeUsers: <span class="std">List</span>[User] = DB readOnly { <span class="kw">implicit</span> session <span class="kw">=&gt;</span>
-  SQL(<span class="lit">"select * from user where active = ?"</span>).bind(<span class="kw">true</span>)
-    .map { rs <span class="kw">=&gt;</span> User(
-      id = rs.long(<span class="lit">"id"</span>),
-      name = rs.string(<span class="lit">"name"</span>),
-      birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime))
-    }.list.apply()
+  SQL(<span class="lit">"select * from users where active = ?"</span>)
+    .bind(<span class="kw">true</span>)
+    .map { rs <span class="kw">=&gt;</span> User(id = rs.long(<span class="lit">"id"</span>), name = rs.string(<span class="lit">"name"</span>), birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime)) }.list.apply()
 }
 </pre><p>or</p><pre>
 <span class="kw">val</span> activeUsers: <span class="std">List</span>[User] = DB readOnly { <span class="kw">implicit</span> session <span class="kw">=&gt;</span>
-  SQL(<span class="lit">"select * from user where active = /*'active*/rue"</span>)
+  SQL(<span class="lit">"select * from users where active = /*'active*/rue"</span>)
     .bindByName('active -&gt; <span class="kw">true</span>)
-    .map { rs <span class="kw">=&gt;</span> User(
-      id = rs.long(<span class="lit">"id"</span>),
-      name = rs.string(<span class="lit">"name"</span>),
-      birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime))
-    }.list.apply()
+    .map { rs <span class="kw">=&gt;</span> User(id = rs.long(<span class="lit">"id"</span>), name = rs.string(<span class="lit">"name"</span>), birthday = <span class="std">Option</span>(rs.date(<span class="lit">"birthday"</span>)).map(_.toDateTime)) }.list.apply()
 }
 </pre></div></div>
     
@@ -667,6 +656,19 @@ and returns the result as scala.collection.Traversable value.</p>
       </span>
       </h4>
       <p class="comment cmt">SQL Template Parser.</p>
+    </li><li visbl="pub" name="scalikejdbc.StatementExecutor" data-isabs="false">
+      <a id="StatementExecutor:StatementExecutor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="StatementExecutor$.html"><span class="name">StatementExecutor</span></a><span class="result"> extends Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object
+</p>
     </li><li visbl="pub" name="scalikejdbc.StringSQLRunner" data-isabs="false">
       <a id="StringSQLRunner:StringSQLRunner"></a>
       <h4 class="signature">
@@ -763,6 +765,18 @@ and returns the result as scala.collection.Traversable value.</p>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="scalikejdbc.package" class="extype" href="package$.html">package</a></dd></dl></div>
+    </li><li visbl="pub" name="scalikejdbc.metadata" data-isabs="false">
+      <a id="metadata:metadata"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="metadata/package.html"><span class="name">metadata</span></a>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scalikejdbc.package#opt" data-isabs="false">
       <a id="opt[A](Any):Option[A]"></a>
       <h4 class="signature">
