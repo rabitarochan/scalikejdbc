@@ -1,5 +1,6 @@
-@if (@_win32==@_mac) /*
+@if (@_win32==@_win16) /*
 @echo off
+setlocal
 
 set root_dir=%userprofile%\bin\scalikejdbc-cli
 if not exist "%root_dir%" ( mkdir "%root_dir%" )
@@ -31,6 +32,7 @@ if not exist "%config_props%" (
 
 if exist "%dbconsole_command%" ( del /f /q "%dbconsole_command%" )
 >>"%dbconsole_command%" echo @echo off
+>>"%dbconsole_command%" echo setlocal
 >>"%dbconsole_command%" echo.
 >>"%dbconsole_command%" echo pushd "%%~dp0"
 >>"%dbconsole_command%" echo.
@@ -69,14 +71,13 @@ if exist "%dbconsole_command%" ( del /f /q "%dbconsole_command%" )
 >>"%dbconsole_command%" echo   exit /b 1
 >>"%dbconsole_command%" echo )
 >>"%dbconsole_command%" echo.
->>"%dbconsole_command%" echo set _profile = %%1
+>>"%dbconsole_command%" echo set _profile=%%1
 >>"%dbconsole_command%" echo :read_profile_start
->>"%dbconsole_command%" echo if not "%%_profile%%" == "" ( goto :read_profile_end )
+>>"%dbconsole_command%" echo   if not "%%_profile%%" == "" ( goto :read_profile_end )
 >>"%dbconsole_command%" echo.
->>"%dbconsole_command%" echo set /p _profile="Select a profile>"
->>"%dbconsole_command%" echo echo.
->>"%dbconsole_command%" echo goto :read_profile_start
->>"%dbconsole_command%" echo.
+>>"%dbconsole_command%" echo   set /p _profile="Select a profile>"
+>>"%dbconsole_command%" echo   echo.
+>>"%dbconsole_command%" echo   goto :read_profile_start
 >>"%dbconsole_command%" echo :read_profile_end
 >>"%dbconsole_command%" echo.
 >>"%dbconsole_command%" echo echo.
@@ -157,19 +158,20 @@ if exist "%build_sbt%" ( del /f /q "%build_sbt%" )
 >>"%build_sbt%" echo def tables = println(DB.showTables())
 >>"%build_sbt%" echo """
 
-:: 環境変数設定
-
-echo command installed to %dbconsole_command%
+echo Command installed to %dbconsole_command%
 echo.
-echo Please reboot and run 'dbconsole'.
+echo Please add the following path to the 'Path' Environment Variable,
+echo   %root_dir%
+echo and then, execute 'dbconsole -h' command.
 echo.
-pause
-exit /b 0
-
 
 pause
 exit /b 0
 */ @end
+
+function echo( s ) {
+  WScript.Echo( s || "" );
+}
 
 function wget( url, filename ) {
   var client = WScript.CreateObject( "Msxml2.XMLHTTP" );
@@ -177,17 +179,32 @@ function wget( url, filename ) {
   var typeBinary = 1;
   var createOverWrite = 2;
   
-  client.open( "GET", url, false );
-  client.send();
+  try {
+    client.open( "GET", url, false );
+    client.send();
+  } catch (e) {
+    echo( e.message );
+    return 1;
+  }
   
   outStream.type = typeBinary;
   outStream.Open();
   outStream.Write( client.responseBody );
   outStream.SaveToFile( filename, createOverWrite );
+  
+  return 0;
 }
 
 var args = WScript.Arguments;
 var url = args(0);
 var filename = args(1);
 
-wget( url, filename );
+echo( "Downloading " + filename + " ..." );
+echo( "  from: " + url );
+var rc = wget( url, filename );
+if ( rc == 0 ) {
+  echo( "Download success!\n" );
+} else {
+  echo( "Download failed...\n" );
+}
+WScript.Quit( rc );
